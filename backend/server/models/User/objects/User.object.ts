@@ -13,6 +13,7 @@ import { ObjectType, Field, ID } from "type-graphql";
  */
 
 @ObjectType()
+// UserObject
 export class UserObject {
   @Field()
   id: string;
