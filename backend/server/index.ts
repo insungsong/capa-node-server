@@ -9,7 +9,9 @@
 
 import { PORT } from "../env.config";
 import expressApp from "./express";
+import { connectDatabase } from "./lib/connectDatabase";
 
-expressApp.listen(PORT, () => {
+expressApp.listen(PORT, async () => {
+  await connectDatabase();
   console.log(`✅ Server ready on http://localhost:${PORT} ✅`);
 });

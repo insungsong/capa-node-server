@@ -37,14 +37,10 @@ export interface Context {
 //   return { ...req, user };
 // };
 
-const context = async () => {
-  await connectDatabase();
-};
-
 //ApolloServer를 사용하기 위한 코드
 const server = new ApolloServer({
   schema,
-  context,
+  // context,
   introspection: true,
   playground: true
 });
