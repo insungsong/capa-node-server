@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getRepository } from "typeorm";
 import { StoresEntity } from "../entities/StoresEntity.entity";
 
 interface IIsStores {
@@ -15,11 +16,20 @@ interface IAxiosPostCodeSearchProcessing {
 
 //들어온 정보가 db에 존재하는 db인지를 확인하기 위함이다.
 export const isStoresProcessing = async ({ name, postcode }: IIsStores) => {
-  const isStores = await StoresEntity.createQueryBuilder("stores")
-    .where("stores.postcode = :postcode", {
+  // const isStores = await StoresEntity.createQueryBuilder("stores")
+  //   .where("stores.postcode = :postcode", {
+  //     postcode
+  //   })
+  //   .getOne();
+
+  const isStores = await StoresEntity.findOne({
+    where: {
+      name,
       postcode
-    })
-    .getOne();
+    }
+  });
+
+  console.log("isStores: ", isStores);
 
   if (!isStores) {
     await StoresEntity.create({
@@ -37,7 +47,7 @@ export const axiosPostCodeSearchProcessing = async ({
   const result = await axios({
     method,
     url: `${url}${postcode}`
-  }).then(function(response) {
+  }).then(function (response) {
     const postCodeSearchresultData = response?.data;
 
     return postCodeSearchresultData;

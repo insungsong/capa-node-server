@@ -49,7 +49,7 @@ export class StoresResolver {
     try {
       const storesDataList = data.storesData;
 
-      storesDataList.map(async (item) => {
+      storesDataList.map(async (item, index) => {
         //해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
         // const isStores = await StoresEntity.createQueryBuilder("stores")
         //   .where("stores.name = :name AND stores.postcode = :postcode", {
@@ -75,13 +75,15 @@ export class StoresResolver {
   @Mutation(() => Boolean)
   async createStores() {
     try {
-      STORES.map(async (item) => {
+      const result = STORES.map(async (item) => {
         // 해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
         await isStoresProcessing({
           name: item.name,
           postcode: item.postcode
         });
       });
+
+      await Promise.all(result);
 
       return true;
     } catch (e) {
@@ -178,7 +180,7 @@ export class StoresResolver {
             }
           ]
         }
-      }).then(function(response) {
+      }).then(function (response) {
         return response?.data;
       });
 
