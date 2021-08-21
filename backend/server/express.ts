@@ -30,16 +30,21 @@ export interface Context {
   user?: any;
 }
 
-const context = async ({ req }): Promise<Partial<Context>> => {
-  await connectDatabase();
-  const user = await parseAuthHeader(req.headers.authorization);
+// const context = async ({ req }): Promise<Partial<Context>> => {
+//   await connectDatabase();
+//   const user = await parseAuthHeader(req.headers.authorization);
 
-  return { ...req, user };
+//   return { ...req, user };
+// };
+
+const context = async () => {
+  await connectDatabase();
 };
 
 //ApolloServer를 사용하기 위한 코드
 const server = new ApolloServer({
   schema,
+  context,
   introspection: true,
   playground: true
 });
