@@ -1,6 +1,6 @@
 import axios from "axios";
 import { getRepository } from "typeorm";
-import { StoresEntity } from "../entities/StoresEntity.entity";
+import { StoresEntity } from "../entities/Stores.entity";
 
 interface IIsStores {
   //   [item: string]: { name: string; postcode: string };

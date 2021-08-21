@@ -36,7 +36,9 @@ const context = async () => {
 //ApolloServer를 사용하기 위한 코드
 const server = new ApolloServer({
   schema,
-  context
+  context,
+  introspection: true,
+  playground: true
 });
 
 server.applyMiddleware({ app: expressApp });

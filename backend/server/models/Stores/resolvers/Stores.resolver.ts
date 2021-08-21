@@ -9,7 +9,7 @@
 
 import { STORES } from "../../../stores";
 import { Resolver, Query, Mutation, Arg } from "type-graphql";
-import { StoresEntity } from "../entities/StoresEntity.entity";
+import { StoresEntity } from "../entities/Stores.entity";
 import { CreateStroesDataInput } from "../inputs/CreateStroesData.input";
 import {
   axiosPostCodeSearchProcessing,
