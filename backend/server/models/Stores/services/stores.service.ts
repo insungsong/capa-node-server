@@ -16,8 +16,7 @@ interface IAxiosPostCodeSearchProcessing {
 //들어온 정보가 db에 존재하는 db인지를 확인하기 위함이다.
 export const isStoresProcessing = async ({ name, postcode }: IIsStores) => {
   const isStores = await StoresEntity.createQueryBuilder("stores")
-    .where("stores.name = :name AND stores.postcode = :postcode", {
-      name,
+    .where("stores.postcode = :postcode", {
       postcode
     })
     .getOne();
