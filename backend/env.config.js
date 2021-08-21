@@ -9,6 +9,7 @@ let certs = null;
 
 let dbconfig = {};
 try {
+  certs = require("./config/certs.config");
   dbconfig = require("./config/db.config");
 } catch (e) {}
 
@@ -26,6 +27,8 @@ module.exports = {
   PORT: process.env.PORT || 8080,
   DEV: isDev,
   DATABASE: {
+    CERT_PUBLIC: certs.PUBLIC,
+    CERT_PRIVATE: certs.PRIVATE,
     type: process.env.DB_TYPE,
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,

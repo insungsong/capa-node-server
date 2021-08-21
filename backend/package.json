@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "dev": "NODE_ENV=development ts-node-dev --compiler-options=\"{\\\"module\\\": \\\"commonjs\\\"}\" ./server/index.ts",
-    "start": "ts-node --compiler-options=\"{\\\"module\\\": \\\"commonjs\\\"}\" ./server/index.ts"
+    "start": "ts-node --compiler-options=\"{\\\"module\\\": \\\"commonjs\\\"}\" ./server/index.ts",
+    "certs": "mkdir -p config && openssl ecparam -genkey -name secp256r1 -out config/.private.certs.config.js && openssl ec -in config/.private.certs.config.js -pubout -out config/.public.certs.config.js"
   },
   "author": "InsungSong",
   "license": "GPL-3.0",
@@ -28,6 +29,7 @@
     "graphql-middleware": "~4.0.2",
     "graphql-shield": "~7.2.6",
     "graphql-type-json": "~0.3.2",
+    "jsonwebtoken": "^8.5.1",
     "next": "~9.3.6",
     "nodemon": "~2.0.3",
     "notistack": "~0.9.11",
