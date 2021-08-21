@@ -41,14 +41,14 @@ createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아�
 - express.js
 
 📌 질문 주신 사항에 대한 답변
-- If you had chosen to spend more time on this test, what would you have done differently(이 테스트에 더 많은 시간을 할애하기로 했다면 어떻게 했을 것입니까?)?
+- If you had chosen to spend more time on this test, what would you have done differently
   더 많은 시간 테스트를 진행해 볼 수 있었다면, Redis를 사용해보고 싶다라는 생각을 했습니다. Redis는 in-memory Database라고 알고있습니다. 메모리 단에서 db작업을 하고, 해당 Data를 사용하고자
   한다면 slave server에 저장하는 등의 방법을 사용할 수 있다. 수준으로 정도로만 알고 있어서 저에게 시간이 더 주워진다면 해당 기술 스택을 사용해볼 것 같습니다.
   그리고 이번 프로젝트를 진행하면서, 하나의 서버 즉 graphql Playground 서버 안에서 CAPA 관계자 측에서 만들어야 하는 List로 주신 모든 API 로직이 동작할 수 있게 하기위해서 axios를 graphql 요청딴에
   함께 묶어서 작업을 진행했습니다. 이번 코딩테스트를 계기로 처음으로 graphql API 요청에 restful한 axios를 넣어서 진행을 한 것이기에 해당 로직이 어떠한 취약점을 가지고 있는지에 따른 부분을 알아보아야 할
   것으로 판단됩니다.
   
-- What part did you find the hardest? What part are you most proud of? In both cases, why(어떤 부분이 가장 어려웠나요? 어떤 부분이 가장 자랑스럽습니까? 두 경우 모두 왜?)
+- What part did you find the hardest? What part are you most proud of? In both cases, why?
   코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
   1. 제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
   2. postcode.io라는 외부 api를 어떤식으로 적용시킬지에 대한 고민
@@ -76,12 +76,12 @@ createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아�
   
 
 
-- What is one thing we could do to improve this test(이 테스트를 개선하기 위해 우리가 할 수 있는 한 가지는 무엇입니까?)
+- What is one thing we could do to improve this test?
  postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때
  현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는다면 DB안에서 sql문을 보다 효과적으로 사용하여
  빠르게 select를 해올 수 있지 않을까 생각합니다.
  또한 현재는 localserver에서만 playground가 동작합니다. Graphql 서버 연결까지는 완료했지만 
-DB 서버 연결까지는 진행하지 못했습니다. 따라서 보안한다면 localserver에서만 동작시켰던 db 서버를 GCP나 AWS RDS을 사용하여 적용시키고 싶은 아쉬움이 남습니다.
+DB 서버 연결까지는 진행하지 못했습니다. 따라서 보안한다면 LocalServer에서만 동작시켰던 DB 서버를 GCP나 AWS RDS을 사용하여 적용시키고 싶은 아쉬움이 남습니다.
 
 
 
