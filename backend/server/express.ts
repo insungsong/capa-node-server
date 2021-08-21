@@ -3,7 +3,6 @@ import { ApolloServer } from "apollo-server-express";
 import { applyMiddleware } from "graphql-middleware";
 import { buildSchemaSync, NonEmptyArray } from "type-graphql";
 import { connectDatabase } from "./lib/connectDatabase";
-import { parseAuthHeader } from "./lib/parseAuthHeader";
 
 /**
  * Express 서버를 실행합니다.
@@ -30,11 +29,8 @@ export interface Context {
   user?: any;
 }
 
-const context = async ({ req }): Promise<Partial<Context>> => {
+const context = async () => {
   await connectDatabase();
-  const user = await parseAuthHeader(req.headers.authorization);
-
-  return { ...req, user };
 };
 
 //ApolloServer를 사용하기 위한 코드

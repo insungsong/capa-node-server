@@ -5,31 +5,23 @@ import {
   BaseEntity,
   CreateDateColumn,
   UpdateDateColumn,
-  DeleteDateColumn,
-  OneToMany,
-  ManyToOne
+  DeleteDateColumn
 } from "typeorm";
 /**
  * 데이터베이스와 연결된 Entity 입니다.
  *
- * @author BounceCode, Inc.
+ * @author InsungSong, Inc.
  */
 @Entity()
-export class UserEntity extends BaseEntity {
+export class StoresEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  email: string;
+  name: string;
 
-  @Column({ nullable: true })
-  password?: string;
-
-  @Column({ nullable: true })
-  name?: string;
-
-  @Column({ nullable: true })
-  phone_number?: string;
+  @Column()
+  postcode: string;
 
   @CreateDateColumn()
   createdDate: Date;

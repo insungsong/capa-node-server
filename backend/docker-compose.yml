@@ -1,43 +1,36 @@
 version: "3.7"
 
 services:
-  app.example.io:
+  app.capa.io:
     build: .
     restart: on-failure
     volumes:
-      - ./docs:/usr/src/app/docs
-      - ./pages:/usr/src/app/pages
-      - ./client:/usr/src/app/client
       - ./server:/usr/src/app/server
-      - ./scripts:/usr/src/app/scripts
-      - ./public:/usr/src/app/public
-      - ./uploads:/usr/src/app/uploads
-      - ./config:/usr/src/app/config
     command: "/bin/sh -c 'yarn dev'"
     ports:
       - 8080:8080
     environment:
       DB_TYPE: postgres
-      DB_HOST: postgres.example.io
+      DB_HOST: postgres.capa.io
       DB_PORT: 5432
       DB_USERNAME: root
       DB_PASSWORD: EXf3hZXz4Kzqx5sr
-      DB_DATABASE: example
+      DB_DATABASE: capa
     logging:
       driver: "json-file"
       options:
         max-size: "200k"
         max-file: "10"
 
-  postgres.example.io:
+  postgres.capa.io:
     image: postgres
     restart: always
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: EXf3hZXz4Kzqx5sr
-      POSTGRES_DB: example
+      POSTGRES_DB: capa
     volumes:
-      - volume.postgres.example.io:/var/lib/postgresql/data
+      - volume.postgres.capa.io:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:5434:5432" # temporary
     logging:
@@ -47,9 +40,9 @@ services:
         max-file: "10"
 
 volumes:
-  volume.postgres.example.io:
+  volume.postgres.capa.io:
 
 networks:
   default:
     # external: true
-    name: example.io
+    name: capa.io
