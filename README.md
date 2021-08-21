@@ -7,26 +7,6 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
 이번 프로젝트는 제가 해당 이직을 준비하면서 만들어 놓은 node-server위에 build해 나가는 과정으로 진행하였습니다.
 해당 프로젝트에 기존으로 세팅을 해놓은 것으로는 간단한 docker-compose up을 통하여 컨테이너를 통하여 node-server를 띄어놓는 초기 세팅을 가진 코드였습니다.
 
-#이번 프로젝트를 진행할 List Up입니다.
-📌Stores.json에서 상점 목록을 얻을 수 있습니다.
-우선 해당 파일로 제시해주셨던 .json파일을 Stores.ts파일로 변경하여 배열을 담는 변수를 export하여 사용 할 수 있게 만들었습니다.
-
-상점 목록의 경우에는 Stores.json에 저장되어 있는 json배열을 DB에 담아서 보다 빠르게 select해 올 수 있도록 진행했습니다.
-해당 stores.json에 있는 두개의 key값을 메인 두개의 컬럼으로 삼아서 entity를 만들었습니다.
-
-📌Stores.json에서 상점의 특정 항목을 가져올 수 있습니다.
-createStoresMutation graphql API를 통해서 만들어진 row data들을 통해서 상점의 특정 항목을 가지고 올 수 있게 했습니다.
-
-📌API 소비자는 Stores.json의 이름으로 항목을 식별할 수 있습니다.
-createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아서 해당 하는 정보를 조회 할 수 있게 했습니다.
-
-📌각 우편 번호에 대한 위도와 경도를 얻을 수 있습니다.(postcodes.io를 사용하여 각 우편번호의 위도와 경도를 얻을 수 있습니다.)
-해당 부분은 axios 모듈을 사용하여 해당 postcodes.io에서 요청시 응답해주는 restAPI를 사용하였습니다.
-(+graphql playground상에서 모두 호출 할 수 있는 resolver를 보여주기위하여 restAPI를 graphql API로 감싸는 작업을 진행했습니다.)
-
-📌영국에서 주어진 우편번호의 주어진 반경에 있는 상점 목록을 반환할 수 있는 기능을 얻을 수 있습니다. (목록은 북쪽에서 남쪽으로 정렬되어야 합니다.)
-해당 restAPI로 요청을 하여 받아오는 배열 data를 filtering하여 북에서 👉 남으로 정렬하게 하는 작업을 진행했습니다.
-
 #해당 리스트를 API화 진행 수순
 기존의 기본적으로 제가 작업을 하기위해 만들어놓은 node-server 프로젝트를 활용하여 List를 진행 했습니다.
 
@@ -35,7 +15,7 @@ createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아�
 - typeorm
 - graphql
 - type-graphql
-- axis
+- axios
 - docker
 - node.js
 - express.js
@@ -100,7 +80,7 @@ https://capa-node-server.herokuapp.com/graphql
 ->해당 url은 로드까지는 완성했으나 db를 클라우드상 서버 혹은 서버로 db를 연동시키는 작업까지는 시간적 제한으로 이뤄내지 못했습니다.
 
 📌마치며,,
-재직중인 회사의 프로젝트 마감기한이 급하여 최대한으로 더 많은 것을 채워서 보여드리지 못한 아쉬움이 남지만 오랜만에 데드라인이라는 기간안에 무언가를 만들어내는 개발 자체의 재밌는 시간을 가졌던 시간이였습니다. 해당 테스트에 응할 수 있는 기회를 주셔서 감사합니다. 🙆‍♂️ 이상입니다. 
+재직중인 회사의 프로젝트 마감기한이 급하여 최대한으로 더 많은 것을 채워서 보여드리지 못한 아쉬움이 남지만 오랜만에 데드라인이라는 기간 안에 무언가를 만들어내는 개발 자체의 재밌는 시간을 가졌던 시간이였습니다. 해당 테스트에 응할 수 있는 기회를 주셔서 감사합니다. 🙆‍♂️ 이상입니다. 
 
 
 
