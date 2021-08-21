@@ -11,5 +11,5 @@ import { PORT } from "../env.config";
 import expressApp from "./express";
 
 expressApp.listen(PORT, () => {
-  console.log(`✅ Server ready on http://localhost:${PORT}`);
+  console.log(`✅ Server ready on http://localhost:${PORT} ✅`);
 });
