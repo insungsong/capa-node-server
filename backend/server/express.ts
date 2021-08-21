@@ -40,7 +40,6 @@ const context = async ({ req }): Promise<Partial<Context>> => {
 //ApolloServer를 사용하기 위한 코드
 const server = new ApolloServer({
   schema,
-  context,
   introspection: true,
   playground: true
 });
