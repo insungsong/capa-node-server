@@ -1,4 +1,4 @@
-# CapaProject
+# CAPA Project
 ## capa-node-server
 
 capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 ✅
