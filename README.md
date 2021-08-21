@@ -24,6 +24,7 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
 
 📌 질문 주신 사항에 대한 답변
 - If you had chosen to spend more time on this test, what would you have done differently
+
   더 많은 시간 테스트를 진행해 볼 수 있었다면, Redis를 사용해보고 싶다라는 생각을 했습니다. Redis는 in-memory Database라고 알고있습니다. 메모리 단에서 db작업을 하고, 해당 Data를 사용하고자
   한다면 slave server에 저장하는 등의 방법을 사용할 수 있다. 수준으로 정도로만 알고 있어서 저에게 시간이 더 주워진다면 해당 기술 스택을 사용해볼 것 같습니다.
   그리고 이번 프로젝트를 진행하면서, 하나의 서버 즉 graphql Playground 서버 안에서 CAPA 관계자 측에서 만들어야 하는 List로 주신 모든 API 로직이 동작할 수 있게 하기위해서 axios를 graphql 요청딴에
