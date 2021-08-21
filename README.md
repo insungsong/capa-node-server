@@ -20,6 +20,8 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
 - node.js
 - express.js
 
+
+
 📌 질문 주신 사항에 대한 답변
 - If you had chosen to spend more time on this test, what would you have done differently
   더 많은 시간 테스트를 진행해 볼 수 있었다면, Redis를 사용해보고 싶다라는 생각을 했습니다. Redis는 in-memory Database라고 알고있습니다. 메모리 단에서 db작업을 하고, 해당 Data를 사용하고자
@@ -68,8 +70,12 @@ DB 서버 연결까지는 진행하지 못했습니다. 따라서 보안한다�
 
 
 
+
 📌 구현한 ERD & API
 PDF 파일 참조 바랍니다.
+
+
+
 
 📌프로젝트 파일 실행 수순 안내
 - 프로젝트를 clone 받으신 후에 해당 project 경로에서 -> cd backend 폴더로 진입합니다.
@@ -77,10 +83,16 @@ PDF 파일 참조 바랍니다.
 - ~backend 경로에서 docker-compose up —build or docker-compose up을 진행합니다.
 - http://localhost:8080/graphql로 접근해서 grapnel Playground에서 api 작업을 진행합니다.(저의 경우 dbeaver를 사용하여 db 의 변경사항을 확인했습니다.)
 
+
+
+
 📌heroku를 통한 grpahql 서버
 https://capa-node-server.herokuapp.com/graphql
 
 ->해당 url은 로드까지는 완성했으나 db를 클라우드상 서버 혹은 서버로 db를 연동시키는 작업까지는 시간적 제한으로 이뤄내지 못했습니다.
+
+
+
 
 📌마치며,,
 
