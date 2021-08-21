@@ -31,6 +31,7 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
   것으로 판단됩니다.
   
 - What part did you find the hardest? What part are you most proud of? In both cases, why?
+ 
   코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
  
   1 제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
