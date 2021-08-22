@@ -98,7 +98,7 @@ PDF 파일 참조 바랍니다.
 - ~backend 경로에서 docker-compose up —build or docker-compose up을 진행합니다.
 - http://localhost:8080/graphql로 접근해서 grapnel Playground에서 api 작업을 진행합니다.(저의 경우 dbeaver를 사용하여 db 의 변경사항을 확인했습니다.)
 
-📌heroku를 통한 grpahql 서버
+📌heroku를 통한 GraphQL 서버
 https://capa-node-server.herokuapp.com/graphql
 
 👆
