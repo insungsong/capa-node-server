@@ -41,87 +41,37 @@ enum REGION {
 }
 
 @Resolver()
+//stroes.ts의 전체목록을 조회하는 query
 export class StoresResolver {
-  //📌Stores.json에 해당 하는 코드를 저장해야합니다.
-  //1. 해당 코드는 props 부분으로 저장하고자 하는 stores.json파일을 넘긴다고 했을때 실행된 api입니다.
-  @Mutation(() => Boolean)
-  async createInputPropsStores(@Arg("data") data: CreateStroesDataInput) {
-    try {
-      const storesDataList = data.storesData;
-
-      storesDataList.map(async (item, index) => {
-        //해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
-        // const isStores = await StoresEntity.createQueryBuilder("stores")
-        //   .where("stores.name = :name AND stores.postcode = :postcode", {
-        //     name: item.name,
-        //     postcode: item.postcode
-        //   })
-        //   .getOne();
-
-        await isStoresProcessing({
-          name: item.name,
-          postcode: item.postcode
-        });
-      });
-
-      return true;
-    } catch (e) {
-      console.log("createStoresMutation Error: ", e);
-      return false;
-    }
-  }
-
-  //2. 해당 코드는 props로 저장하지 않고 stores.json파일 변수를 받아서 배열 자체를 보고 실행하는 api입니다.
-  @Mutation(() => Boolean)
-  async createStores() {
-    try {
-      const result = STORES.map(async (item) => {
-        // 해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
-        await isStoresProcessing({
-          name: item.name,
-          postcode: item.postcode
-        });
-      });
-
-      await Promise.all(result);
-
-      return true;
-    } catch (e) {
-      console.log("createStoresMutation Error: ", e);
-      return false;
-    }
-  }
-
-  //📌Stores.json에서 상점 목록을 얻을 수 있습니다.
-  //📌Stores.json에서 상점의 특정 항목을 가져올 수 있습니다.
   @Query(() => [StoresObject])
-  async storesList() {
+  async findLocalStoresDataList() {
     try {
-      const storesDataList = await StoresEntity.createQueryBuilder(
-        "stores"
-      ).getMany();
+      const storesDataList = STORES;
 
       return storesDataList;
     } catch (e) {
-      console.log("stores Error: ", e);
-      return null;
+      console.log("createStoresMutation Error: ", e);
+      return false;
     }
   }
 
-  //📌API 소비자는 Stores.json의 이름으로 항목을 식별할 수 있습니다.
   @Query(() => StoresObject)
-  async store(@Arg("where") where: StoreWhereInput) {
+  //상점의 name정보를 받아서 특정 상점의 name과 postcode를 조회하는 query
+  async findOneLocalStoreData(@Arg("data") data: StoreWhereInput) {
     try {
-      const { name } = where;
+      const storesDataList = STORES;
+      const { name } = data;
 
-      const currentStore = await StoresEntity.createQueryBuilder("stores")
-        .where("stores.name = :name", { name })
-        .getOne();
+      const findStoreData = storesDataList.find(
+        (stores) => stores.name === name
+      );
 
-      return currentStore;
+      console.log("findStoreData: ", findStoreData);
+
+      return findStoreData;
     } catch (e) {
-      console.log("store Error: ", e);
-      return null;
+      console.log("createStoresMutation Error: ", e);
+      return false;
     }
   }
 
@@ -246,6 +196,90 @@ export class StoresResolver {
       return regionMergeList;
     } catch (e) {
       console.log("radiusPostcodeList Error :", e);
+      return null;
+    }
+  }
+  ///////////////////////////////////////////DB에 stores.json데이터를 넣고 진행하는 로직/////////////////////////////////////////////////
+
+  //📌Stores.json에 해당 하는 코드를 저장해야합니다.
+  //1. 해당 코드는 props 부분으로 저장하고자 하는 stores.json파일을 넘긴다고 했을때 실행된 api입니다.
+  @Mutation(() => Boolean)
+  async createInputPropsStores(@Arg("data") data: CreateStroesDataInput) {
+    try {
+      const storesDataList = data.storesData;
+
+      storesDataList.map(async (item, index) => {
+        //해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
+        // const isStores = await StoresEntity.createQueryBuilder("stores")
+        //   .where("stores.name = :name AND stores.postcode = :postcode", {
+        //     name: item.name,
+        //     postcode: item.postcode
+        //   })
+        //   .getOne();
+
+        await isStoresProcessing({
+          name: item.name,
+          postcode: item.postcode
+        });
+      });
+
+      return true;
+    } catch (e) {
+      console.log("createStoresMutation Error: ", e);
+      return false;
+    }
+  }
+
+  //2. 해당 코드는 props로 저장하지 않고 stores.json파일 변수를 받아서 배열 자체를 보고 실행하는 api입니다.
+  @Mutation(() => Boolean)
+  async createStores() {
+    try {
+      const result = STORES.map(async (item) => {
+        // 해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
+        await isStoresProcessing({
+          name: item.name,
+          postcode: item.postcode
+        });
+      });
+
+      await Promise.all(result);
+
+      return true;
+    } catch (e) {
+      console.log("createStoresMutation Error: ", e);
+      return false;
+    }
+  }
+
+  //📌Stores.json에서 상점 목록을 얻을 수 있습니다.
+  //📌Stores.json에서 상점의 특정 항목을 가져올 수 있습니다.
+  @Query(() => [StoresObject])
+  async storesList() {
+    try {
+      const storesDataList = await StoresEntity.createQueryBuilder(
+        "stores"
+      ).getMany();
+
+      return storesDataList;
+    } catch (e) {
+      console.log("stores Error: ", e);
+      return null;
+    }
+  }
+
+  //📌API 소비자는 Stores.json의 이름으로 항목을 식별할 수 있습니다.
+  @Query(() => StoresObject)
+  async store(@Arg("where") where: StoreWhereInput) {
+    try {
+      const { name } = where;
+
+      const currentStore = await StoresEntity.createQueryBuilder("stores")
+        .where("stores.name = :name", { name })
+        .getOne();
+
+      return currentStore;
+    } catch (e) {
+      console.log("store Error: ", e);
       return null;
     }
   }
