@@ -44,10 +44,10 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
 - heroku
 
 📌 질문 주신 사항에 대한 답변
-- If you had chosen to spend more time on this test, what would you have done differently(이 테스트에 더 많은 시간을 할애하기로 했다면 어떻게 했을 것입니까?)?
+- If you had chosen to spend more time on this test, what would you have done differently?
   더 많은 시간 테스트를 진행해 볼 수 있었다면, Redis를 사용해보고 싶다라는 생각을 했습니다. Redis는 in-memory Database라고 알고 있습니다. 메모리 단에서 db작업을 하고, 해당 Data를 사용하고자
   한다면 slave server에 저장하는 등의 방법을 사용할 수 있다 정도의 수준으로 알고 있어서 저에게 시간이 더 주워진다면 해당 기술 스택을 사용해볼 것 같습니다.
-  그리고 이번 프로젝트를 진행하면서, CAPA 관계자 측에서 제공해주신 Stores.json을 통하여 만들어 내야하는 List를 하나의 서버 즉 GraphQL Playground 서버 안에서 모든 API 로직이 동작할 수 있게 하기위	   해서 axios를 GraphQL 요청딴에 함께 묶어서 작업을 진행했습니다. 이번 코딩테스트를 계기로 처음으로 GraphQL API 요청에 restful한 Axios를 넣어서 진행을 한 것이기에 해당 로직이 어떠한 취약점을 가지고 있는지	에 따른 부분을 알아보아야 할 것으로 판단됩니다.
+  이번 프로젝트를 진행하면서, CAPA 관계자 측에서 제공해주신 Stores.json을 통하여 만들어 내야하는 List를 GraphQL Playground 서버 안에서 모든 API 로직이 동작할 수 있게 했습니다. axios를 GraphQL 요청   딴에 함께 묶어서 작업을 진행했습니다. 이번 코딩테스트를 계기로 처음으로 GraphQL API 요청에 restful한 axios를 넣어서 진행을 한 것이였습니다. 해당 로직이 어떠한 취약점을 가지고 있는지	에 따른 부분을 알아보아   야 할 것으로 판단됩니다.
   
 - What part did you find the hardest? What part are you most proud of? In both cases, why?
   코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
