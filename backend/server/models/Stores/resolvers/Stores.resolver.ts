@@ -40,8 +40,9 @@ enum REGION {
   EAST_NORTH = "East North"
 }
 
+//----------------------------------------------- 제공해주신 stores.json파일 -> stores.ts파일로 변경하여 LocalData를 통해서 조회하는 API ---------------------------------------------------
 @Resolver()
-//local에 저장되어있는 stroes.ts의 전체목록을 조회하는 query
+//Local에 저장되어있는 stroes.ts파일을 통해 전체목록을 조회하는 query + Local에 저장되어있는 stroes.ts파일을 통해 전체목록에서 특정 항목을 조회 하는query
 export class StoresResolver {
   @Query(() => [StoresObject])
   async findLocalStoresDataList() {
@@ -56,7 +57,7 @@ export class StoresResolver {
   }
 
   @Query(() => StoresObject)
-  //local에 저장되어있는 json파일의 데이터를 통해 상점의 name정보를 받아서 특정 상점의 name과 postcode를 조회하는 query
+  //Local에 저장되어있는 json파일의 데이터를 통해 상점의 name정보를 받아서 특정 상점의 name 및 postcode를 조회하는 query
   async findOneLocalStoreData(@Arg("data") data: StoreWhereInput) {
     try {
       const storesDataList = STORES;
@@ -75,7 +76,6 @@ export class StoresResolver {
     }
   }
 
-  //해당 부분은 테스트를 진행해야함
   //📌각 우편 번호에 대한 위도와 경도를 얻을 수 있습니다.(postcodes.io를 사용하여 각 우편번호의 위도와 경도를 얻을 수 있습니다.)
   @Query(() => ResultObject)
   async moreInfoStore(@Arg("where") where: PostcodesWhereInput) {
@@ -94,7 +94,9 @@ export class StoresResolver {
     }
   }
 
-  //영국에서 주어진 우편번호의 주어진 반경에 있는 상점 목록을 반환할 수 있는 기능을 얻을 수 있습니다. (목록은 북쪽에서 남쪽으로 정렬되어야 합니다.)
+  //--------------------------------------------------- axios를 사용하여 postcode.io로 부터 데이터를 받아오는 API ---------------------------------------------------
+
+  //영국에서 주어진 우편번호의 주어진 반경에 있는 상점 목록을 반환할 수 있는 기능을 얻을 수 있습니다.
   @Query(() => [RegionMergeListObject])
   async radiusPostcodeList(@Arg("where") where: PostcodesWhereInput) {
     //경도와 위도의 경우에는 UX적으로 찾게 하는것도, 입력하게 하는것도 좋지 않을 것으로 판단하여 밑의 line에서 해결합니다.
@@ -199,88 +201,89 @@ export class StoresResolver {
       return null;
     }
   }
-  ///////////////////////////////////////////DB에 stores.json데이터를 넣고 진행하는 로직/////////////////////////////////////////////////
+
+  //--------------------------------------------------- DB에 stores.json데이터를 넣고 진행하는 로직 ---------------------------------------------------
 
   //📌Stores.json에 해당 하는 코드를 저장해야합니다.
   //1. 해당 코드는 props 부분으로 저장하고자 하는 stores.json파일을 넘긴다고 했을때 실행된 api입니다.
-  // @Mutation(() => Boolean)
-  // async createInputPropsStores(@Arg("data") data: CreateStroesDataInput) {
-  //   try {
-  //     const storesDataList = data.storesData;
+  @Mutation(() => Boolean)
+  async createInputPropsStores(@Arg("data") data: CreateStroesDataInput) {
+    try {
+      const storesDataList = data.storesData;
 
-  //     storesDataList.map(async (item, index) => {
-  //       //해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
-  //       // const isStores = await StoresEntity.createQueryBuilder("stores")
-  //       //   .where("stores.name = :name AND stores.postcode = :postcode", {
-  //       //     name: item.name,
-  //       //     postcode: item.postcode
-  //       //   })
-  //       //   .getOne();
+      storesDataList.map(async (item, index) => {
+        //해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
+        // const isStores = await StoresEntity.createQueryBuilder("stores")
+        //   .where("stores.name = :name AND stores.postcode = :postcode", {
+        //     name: item.name,
+        //     postcode: item.postcode
+        //   })
+        //   .getOne();
 
-  //       await isStoresProcessing({
-  //         name: item.name,
-  //         postcode: item.postcode
-  //       });
-  //     });
+        await isStoresProcessing({
+          name: item.name,
+          postcode: item.postcode
+        });
+      });
 
-  //     return true;
-  //   } catch (e) {
-  //     console.log("createStoresMutation Error: ", e);
-  //     return false;
-  //   }
-  // }
+      return true;
+    } catch (e) {
+      console.log("createStoresMutation Error: ", e);
+      return false;
+    }
+  }
 
   //2. 해당 코드는 props로 저장하지 않고 stores.json파일 변수를 받아서 배열 자체를 보고 실행하는 api입니다.
-  // @Mutation(() => Boolean)
-  // async createStores() {
-  //   try {
-  //     const result = STORES.map(async (item) => {
-  //       // 해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
-  //       await isStoresProcessing({
-  //         name: item.name,
-  //         postcode: item.postcode
-  //       });
-  //     });
+  @Mutation(() => Boolean)
+  async createStores() {
+    try {
+      const result = STORES.map(async (item) => {
+        // 해당 data가 DB상에 이미 존재하는 data라면 저장하지 않기 위한 코드
+        await isStoresProcessing({
+          name: item.name,
+          postcode: item.postcode
+        });
+      });
 
-  //     await Promise.all(result);
+      await Promise.all(result);
 
-  //     return true;
-  //   } catch (e) {
-  //     console.log("createStoresMutation Error: ", e);
-  //     return false;
-  //   }
-  // }
+      return true;
+    } catch (e) {
+      console.log("createStoresMutation Error: ", e);
+      return false;
+    }
+  }
 
   //📌Stores.json에서 상점 목록을 얻을 수 있습니다.
   //📌Stores.json에서 상점의 특정 항목을 가져올 수 있습니다.
-  // @Query(() => [StoresObject])
-  // async storesList() {
-  //   try {
-  //     const storesDataList = await StoresEntity.createQueryBuilder(
-  //       "stores"
-  //     ).getMany();
+  @Query(() => [StoresObject])
+  async storesList() {
+    try {
+      const storesDataList = await StoresEntity.createQueryBuilder(
+        "stores"
+      ).getMany();
 
-  //     return storesDataList;
-  //   } catch (e) {
-  //     console.log("stores Error: ", e);
-  //     return null;
-  //   }
-  // }
+      return storesDataList;
+    } catch (e) {
+      console.log("stores Error: ", e);
+      return null;
+    }
+  }
 
   //📌API 소비자는 Stores.json의 이름으로 항목을 식별할 수 있습니다.
-  // @Query(() => StoresObject)
-  // async store(@Arg("where") where: StoreWhereInput) {
-  //   try {
-  //     const { name } = where;
+  @Query(() => StoresObject)
+  async store(@Arg("where") where: StoreWhereInput) {
+    try {
+      const { name } = where;
 
-  //     const currentStore = await StoresEntity.createQueryBuilder("stores")
-  //       .where("stores.name = :name", { name })
-  //       .getOne();
+      const currentStore = await StoresEntity.createQueryBuilder("stores")
+        .where("stores.name = :name", { name })
+        .getOne();
 
-  //     return currentStore;
-  //   } catch (e) {
-  //     console.log("store Error: ", e);
-  //     return null;
-  //   }
-  // }
+      return currentStore;
+    } catch (e) {
+      console.log("store Error: ", e);
+      return null;
+    }
+  }
 }
