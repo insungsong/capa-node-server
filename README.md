@@ -77,6 +77,7 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
 
 
 - What is one thing we could do to improve this test?
+
  postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때
  현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는 Entity의 column들이 존재한다면 
  sql문을 보다 효과적으로 사용하여 빠르게 select를 해올 수 있지 않을까 생각합니다. 또한 현재는 heroku에 배포한 API들은 stores.json 파일이라는 LocalData를 가지고 select를 해오는 API와 axios를 
@@ -92,14 +93,14 @@ PDF 파일 참조 바랍니다.
 - http://localhost:8080/graphql로 접근해서 GraphQL Playground에서 api 작업 테스트를 진행합니다.(저의 경우 LocalData가 아닌 db로 생성하여 테스트한 것의 경우에는 DBeaver Tool를 사용하여 db 의 변경사항을 확인했습니다.)
 
 📌heroku를 통한 GraphQL 서버
-https://capa-node-server.herokuapp.com/graphql
+- https://capa-node-server.herokuapp.com/graphql
 
 👆
 heroku 서버를 빌드한 부분에서 아쉬움이 남는 부분
-Local 데이터로 존재하는 json파일은 쿼리 조회 및 postcode.io API등 요구사항에 맞게 프로젝트를 만들었습니다. 그러나 추후 시간이 더 주워진다면, GCP 또는 aws의 RDS 클라우드 DB서버를 활용하여 json데이터를  DB안에 넣어 DB안에서 sql문을 통해 rows Data들을 조회 할 수 있게 하면 더 좋을 것 같습니다.
+- Local 데이터로 존재하는 json파일은 쿼리 조회 및 postcode.io API등 요구사항에 맞게 프로젝트를 만들었습니다. 그러나 추후 시간이 더 주워진다면, GCP 또는 aws의 RDS 클라우드 DB서버를 활용하여 json데이터를  DB안에 넣어 DB안에서 sql문을 통해 rows Data들을 조회 할 수 있게 하면 더 좋을 것 같습니다.
 
 📌마치며,,
-재직중인 회사의 프로젝트 마감기한이 급하여 최대한으로 더 많은 것을 채워서 보여드리지 못한 아쉬움이 남지만 오랜만에 어떤 요구사항을 회사 업무가 아닌 긴장 넘치는 마음으로 요구사항에 맞는 프로젝트를 데드라인이라는 제한시간 안에 무언가를 만들어내는 개발 자체의 재밌는 시간을 가졌던 시간이였습니다. 해당 테스트에 응할 수 있는 기회를 주셔서 감사합니다. 🙆‍♂️ 이상입니다. 
+-  재직중인 회사의 프로젝트 마감기한이 급하여 최대한으로 더 많은 것을 채워서 보여드리지 못한 아쉬움이 남지만 오랜만에 어떤 요구사항을 회사 업무가 아닌 긴장 넘치는 마음으로 요구사항에 맞는 프로젝트를 데드라인이라는 제한시간 안에 무언가를 만들어내는 개발 자체의 재밌는 시간을 가졌던 시간이였습니다. 해당 테스트에 응할 수 있는 기회를 주셔서 감사합니다. 🙆‍♂️ 이상입니다. 
 
 
 
