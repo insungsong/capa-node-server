@@ -42,6 +42,7 @@ createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아�
 - docker
 - node.js
 - express.js
+- heroku
 
 📌 질문 주신 사항에 대한 답변
 - If you had chosen to spend more time on this test, what would you have done differently(이 테스트에 더 많은 시간을 할애하기로 했다면 어떻게 했을 것입니까?)?
