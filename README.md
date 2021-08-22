@@ -69,7 +69,13 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
       들어온 props가 기존에 entityd의 row data로 존재하는 것인지 판단하고 존재하지 않았던 것이라면 create 및 조회가 가능하도록 만들었습니다.
 
   -  2️⃣ 에대한 설명
-   postcode.io를 사용할때는 postman을 통하여 test를 진행하면서 restful방식의 모듈인 axios를 사용했습니다. 이 부분을 사용하는 것에 대한 어려움과 고민이라기 보다는 graphql 요청을 사용하는 playground라는 하나의 서버에서 axios와 같은 restful요청도 포함하며 하나의 서버에서 작동시키게 할 수 있을까라는 고민을 했습니다. 이것이 실 프로젝트 였다면 graphql서버는 서버대로, axios를 받아오는 	       responseData는 해당 데이터 대로 Front-end딴으로 바로 뿌려서 View에서 가공해서 보여주면 되는 작업이지만 API라는 Back-end 과제를 진행하면서 하나의 간결한 서버에서 TO DO LIST에 해당하는 API들	을모두 보여드리고 싶었습니다.따라서 GraphQL API를 요청하는 파일에서 해당 axios부분도 graphql로 감싸서 graphQL playground상에서도 restAPI 요청도 같이 grapnel API에서 같이 처리할 수 있도록 통일성 방향을 선택했습니다.
+  
+   postcode.io를 사용할때는 postman을 통하여 test를 진행하면서 restful방식의 모듈인 axios를 사용했습니다. 
+   이 부분을 사용하는 것에 대한 어려움과 고민이라기 보다는 graphql 요청을 사용하는 playground라는 하나의 서버에서 구동하고자 했습니다.
+   또한 axios와 같은 restful요청도 포함하며 하나의 서버에서 작동시키게 할 수 있을까라는 고민을 했습니다. 
+   이것이 실 프로젝트 였다면 graphql서버는 서버대로, axios를 받아오는 responseData라면 해당 데이터 대로 Front-end딴으로 바로 뿌려서 View에서 가공해서 보여주면 되는 작업입니다.
+   그러나 이번 Back-end 과제를 진행하면서 하나의 간결한 서버에서 TO DO LIST에 해당하는 API들	을모두 보여드리고 싶었습니다.
+   따라서 GraphQL API를 요청하는 파일에서 해당 axios부분도 graphql로 감싸서 graphQL playground상에서도 restAPI 요청도 같이 grapnel API에서 같이 처리할 수 있도록 통일성 방향을 선택했습니다.
    
   -  3️⃣ 에대한 설명
   
