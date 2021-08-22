@@ -55,6 +55,7 @@ export class StoresResolver {
     }
   }
 
+  //heroku upload
   @Query(() => StoresObject)
   //상점의 name정보를 받아서 특정 상점의 name과 postcode를 조회하는 query
   async findOneLocalStoreData(@Arg("data") data: StoreWhereInput) {
