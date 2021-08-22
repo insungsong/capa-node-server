@@ -85,10 +85,9 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
 
 
 - What is one thing we could do to improve this test?
-   - postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때
-   현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는 Entity의 column들이 존재한다면 
-   sql문을 보다 효과적으로 사용하여 빠르게 select를 해올 수 있지 않을까 생각합니다. 또한 현재는 heroku에 배포한 API들은 stores.json 파일이라는 LocalData를 가지고 select를 해오는 API와 axios를 
-   활용한 postcode.io API를 보여주는 수준까지만 완성했습니다. 따라서 보안한다면 db로 저장된 stores.json data들을 db 서버(GCP나 AWS RDS 등등)를 사용하여 적용시키고 싶은 아쉬움이 남습니다.
+   - postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 
+   - 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때 현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는 Entity의 column들이 존재한다면 sql문을 보다 효과적으로 사용하여 빠르게 select를 해올 수 있지 않을까 생각합니다. 
+   - 또한 현재는 heroku에 배포한 API들은 stores.json 파일이라는 LocalData를 가지고 select를 해오는 API와 axios를 활용한 postcode.io API를 보여주는 수준까지만 완성했습니다. 따라서 보안한다면 db로 저장된 stores.json data들을 db 서버(GCP나 AWS RDS 등등)를 사용하여 적용시키고 싶은 아쉬움이 남습니다.
 
 📌 구현한 ERD & API
 - PDF 파일 참조 바랍니다.
