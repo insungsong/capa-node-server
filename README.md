@@ -12,24 +12,23 @@ capa coding test에서 원하는 api 로직을 작성한 프로젝트 입니다 
 
 
 📌Stores.json에서 상점 목록을 얻을 수 있습니다.
-우선 해당 파일로 제시해주셨던 .json파일을 Stores.ts파일로 변경하여 배열을 담는 변수를 export하여 사용 할 수 있게 만들었습니다.
-
-상점 목록의 경우에는 Stores.json에 저장되어 있는 json배열을 DB에 담아서 보다 빠르게 select해 올 수 있도록 진행했습니다.
-해당 stores.json에 있는 두개의 key값을 메인 두개의 컬럼으로 삼아서 entity를 만들었습니다.
+- 우선 해당 파일로 제시해주셨던 .json파일을 Stores.ts파일로 변경하여 배열을 담는 변수를 export하여 사용 할 수 있게 만들었습니다.
+- 상점 목록의 경우에는 Stores.json에 저장되어 있는 json배열을 DB에 담아서 보다 빠르게 select해 올 수 있도록 진행했습니다.
+- 해당 stores.json에 있는 두개의 key값을 메인 두개의 컬럼으로 삼아서 entity를 만들었습니다.
 
 📌Stores.json에서 상점의 특정 항목을 가져올 수 있습니다.
-해당 Stores.json파일 안에 있는 data를 변수로 담아 localData를 select해올 수 있는 코드와 createStoresMutation graphql API를 통해서 Stores.json파일의 데이터를 db에 넣어서 sql을 통해서
+- 해당 Stores.json파일 안에 있는 data를 변수로 담아 localData를 select해올 수 있는 코드와 createStoresMutation graphql API를 통해서 Stores.json파일의 데이터를 db에 넣어서 sql을 통해서
 상점의 list및 특정 항목을 가지고 올 수 있게 했습니다.
 
 📌API 소비자는 Stores.json의 이름으로 항목을 식별할 수 있습니다.
-Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 이름으로 항목을 조회 할 수 있게 만들었습니다. 또한 createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아서 해당 하는 정보를 조회 할 수 있게 했습니다.
+- Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 이름으로 항목을 조회 할 수 있게 만들었습니다. 또한 createStoresMutation을 통하여 생성된 row들중 이름을 props로 받아서 해당 하는 정보를 조회 할 수 있게 했습니다.
 
 📌각 우편 번호에 대한 위도와 경도를 얻을 수 있습니다.(postcodes.io를 사용하여 각 우편번호의 위도와 경도를 얻을 수 있습니다.)
-해당 부분은 axios 모듈을 사용하여 해당 postcodes.io에서 요청시 응답해주는 restAPI를 사용하였습니다.
+- 해당 부분은 axios 모듈을 사용하여 해당 postcodes.io에서 요청시 응답해주는 restAPI를 사용하였습니다.
 (+graphql playground상에서 모두 호출 할 수 있는 resolver를 보여주기위하여 restAPI를 graphql API로 감싸는 작업을 진행했습니다.)
 
 📌영국에서 주어진 우편번호의 주어진 반경에 있는 상점 목록을 반환할 수 있는 기능을 얻을 수 있습니다.
-해당 restAPI로 요청을 하여 받아오는 배열 data를 filtering하여 북 -> 남으로 정렬하게 하는 작업을 진행했습니다.
+- 해당 restAPI로 요청을 하여 받아오는 배열 data를 filtering하여 북 -> 남으로 정렬하게 하는 작업을 진행했습니다.
 
 
 #이번 프로젝트에서 사용된 기술 스택
@@ -54,10 +53,10 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
 - 이번 코딩테스트를 계기로 처음으로 GraphQL API 요청에 restful한 axios를 넣어서 진행을 한 것이였습니다. 해당 로직이 어떠한 취약점을 가지고 있는지	에 따른 부분을 알아보아야 할 것으로 판단됩니다.
   
 - What part did you find the hardest? What part are you most proud of? In both cases, why?
-  코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
-  -  1️⃣제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
-  -  2️⃣postcode.io라는 외부 api를 어떤식으로 적용시킬지에 대한 고민
-  -  3️⃣마지막 TO DO LIST 문항에 대한 고민
+  - 코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
+    -  1️⃣제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
+    -  2️⃣postcode.io라는 외부 api를 어떤식으로 적용시킬지에 대한 고민
+    -  3️⃣마지막 TO DO LIST 문항에 대한 고민
   
   -  1️⃣ 에대한 설명
  
