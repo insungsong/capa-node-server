@@ -97,7 +97,7 @@ PDF 파일 참조 바랍니다.
 - 프로젝트를 clone 받으신 후에 해당 project 경로에서 -> cd backend 폴더로 진입합니다.
 - ~backend 경로에서 yarn install 진행합니다.
 - ~backend 경로에서 docker-compose up —build or docker-compose up을 진행합니다.
-- http://localhost:8080/graphql로 접근해서 grapnel Playground에서 api 작업을 진행합니다.(저의 경우 dbeaver를 사용하여 db 의 변경사항을 확인했습니다.)
+- http://localhost:8080/graphql로 접근해서 GraphQL Playground에서 api 작업 테스트를 진행합니다.(저의 경우 LocalData가 아닌 db로 생성하여 테스트한 것의 경우에는 DBeaver Tool를 사용하여 db 의 변경사항을 확인했습니다.)
 
 📌heroku를 통한 GraphQL 서버
 https://capa-node-server.herokuapp.com/graphql
