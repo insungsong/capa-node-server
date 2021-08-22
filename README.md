@@ -55,11 +55,11 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
   
 - What part did you find the hardest? What part are you most proud of? In both cases, why?
   코드를 쳐 내려가는 것보다 어떤 식으로 정해주신 과제를 해결해 나가야할지에 대한 고민이 가장 컸습니다. 이러한 부분에서 발생했던 고민은 크게 세가지 였습니다.
-  -  제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
-  -  postcode.io라는 외부 api를 어떤식으로 적용시킬지에 대한 고민
-  -  마지막 TO DO LIST 문항에 대한 고민
+  -  1️⃣제시해주신 stores.json파일을 어떤식으로 접근해야할지에 대한 고민
+  -  2️⃣postcode.io라는 외부 api를 어떤식으로 적용시킬지에 대한 고민
+  -  3️⃣마지막 TO DO LIST 문항에 대한 고민
   
-  -  1 에대한 설명
+  -  1️⃣ 에대한 설명
       stores.json 자체를 Database상에 create 하지 않고 json 자체만을 가지고 일반 코딩을 해서 select을 해줄 것인지, 
       아니면 해당 json파일을 db에 저장하는 코드를 만들어서 저장된 db안에서 sql문을 써야할지에 대한 고민이 해당 과제를 받았을때에 첫번째 고민이였습니다.
       선자의 방법의 경우에는 할 순 있겠지만 데이터가 많은 경우 굉장히 비효율적인 코드가 많이 나올 것이라고 판단했습니다. sql문을 사용했을 시에 줄어드는 코드의 양과 하드코딩에 가까운 js를 통한 많은 반복문과 같은
@@ -67,11 +67,11 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
       제시해주신 json 파일을 변수화 처리하여 한번에 create하는 Mutation과 특정 [{상점 정보 Data…},{상점 정보 Data…}]를 props로 던져서
       들어온 props가 기존에 entityd의 row data로 존재하는 것인지 판단하고 존재하지 않았던 것이라면 create 및 조회가 가능하도록 만들었습니다.
 
-  -  2 에대한 설명
+  -  2️⃣ 에대한 설명
 	postcode.io를 사용할때는 postman을 통하여 test를 진행하면서 restful방식의 모듈인 axios를 사용했습니다. 이 부분을 사용하는 것에 대한 어려움과 고민이라기 보다는 graphql 요청을 사용하는 		playground라는 하나의 서버에서 axios와 같은 restful요청도 포함하며 하나의 서버에서 작동시키게 할 수 있을까라는 고민을 했습니다. 이것이 실 프로젝트 였다면 graphql서버는 서버대로, axios를 받아오는 	       responseData는 해당 데이터 대로 Front-end딴으로 바로 뿌려서 View에서 가공해서 보여주면 되는 작업이지만 API라는 Back-end 과제를 진행하면서 하나의 간결한 서버에서 TO DO LIST에 해당하는 API들	을모두 보여드리고 싶었습니다.
 	따라서 GraphQL API를 요청하는 파일에서 해당 axios부분도 graphql로 감싸서 graphQL playground상에서도 restAPI 요청도 같이 grapnel API에서 같이 처리할 수 있도록 통일성 방향을 선택했습니다.
    
-  -  3 에대한 설명
+  -  3️⃣ 에대한 설명
 	 우편 번호를 props로 넘겨줬을때 해당 props의 해당하는 우편번호의 반경 목록을 보여주는 것자체는 어려운 부분이 아니였으나, postcode.io를 통해 가져온 배열을 한번 더 가공을 할때 어떤이 가장 효율적으로
 	 재 배열을 하는 것일까에 대한 고민을 했습니다.
 	 1. A상점의 반경으로 나오는 배열값을 잠깐 DB에 저장해두어 저장된 데이터를 sql문으로 북->남으로 보여주는 sql문을 작성하고 해당 값을 filtering한것이 return 되었다면 해당 저장되었던 row를 삭제시키는 	       방법으로 가져오는 방법이 생각이 났습니다. 물론 해당 방법을 사용하기위해선 해당 유저의 정보를 나타내는 id를 담는 column도 필요하겠지만 진행해봐도 흥미롭겠다라는 생각을 했습니다.
@@ -82,15 +82,16 @@ Stores.js파일을 변수로 담은 파일을 export해서 GraphQL을 통해서 
 
 - What is one thing we could do to improve this test?
 
- postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때
- 현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는 Entity의 column들이 존재한다면 
- sql문을 보다 효과적으로 사용하여 빠르게 select를 해올 수 있지 않을까 생각합니다. 또한 현재는 heroku에 배포한 API들은 stores.json 파일이라는 LocalData를 가지고 select를 해오는 API와 axios를 
- 활용한 postcode.io API를 보여주는 수준까지만 완성했습니다. 따라서 보안한다면 db로 저장된 stores.json data들을 db 서버(GCP나 AWS RDS 등등)를 사용하여 적용시키고 싶은 아쉬움이 남습니다.
+ - postcode.io의 정보가 Stores.json파일에 들어가 있는 정보라고 하겠습니다. 그리고 axios 모듈을 통한 postcode.io API를 요청을 통해 Stores.json와 같은 정보를 담는 Entity의 row가 생성될때
+   현재 Stores.json의 형태인 {name:”string”, postcode:”string”}의 두개의 column뿐만 아니라 한번 저장할때 postcode.io에서 제공하는 상점 정보를 보다 많이 담는 Entity의 column들이 존재한다면 
+   sql문을 보다 효과적으로 사용하여 빠르게 select를 해올 수 있지 않을까 생각합니다. 또한 현재는 heroku에 배포한 API들은 stores.json 파일이라는 LocalData를 가지고 select를 해오는 API와 axios를 
+   활용한 postcode.io API를 보여주는 수준까지만 완성했습니다. 따라서 보안한다면 db로 저장된 stores.json data들을 db 서버(GCP나 AWS RDS 등등)를 사용하여 적용시키고 싶은 아쉬움이 남습니다.
 
 📌 구현한 ERD & API
-PDF 파일 참조 바랍니다.
+- PDF 파일 참조 바랍니다.
 
 📌프로젝트 파일 실행 수순 안내
+
 - 프로젝트를 clone 받으신 후에 해당 project 경로에서 -> cd backend 폴더로 진입합니다.
 - ~backend 경로에서 yarn install 진행합니다.
 - ~backend 경로에서 docker-compose up —build or docker-compose up을 진행합니다.
@@ -100,7 +101,7 @@ PDF 파일 참조 바랍니다.
 - https://capa-node-server.herokuapp.com/graphql
 
 👆
-heroku 서버를 빌드한 부분에서 아쉬움이 남는 부분
+- heroku 서버를 빌드한 부분에서 아쉬움이 남는 부분
 - Local 데이터로 존재하는 json파일은 쿼리 조회 및 postcode.io API등 요구사항에 맞게 프로젝트를 만들었습니다. 그러나 추후 시간이 더 주워진다면, GCP 또는 aws의 RDS 클라우드 DB서버를 활용하여 json데이터를  DB안에 넣어 DB안에서 sql문을 통해 rows Data들을 조회 할 수 있게 하면 더 좋을 것 같습니다.
 
 📌마치며,,
